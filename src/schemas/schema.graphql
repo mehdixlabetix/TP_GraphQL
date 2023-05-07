@@ -1,0 +1,74 @@
+type Mutation {
+  createCV(input: CreateCVInput!): CV
+  updateCV(input: UpdateCVInput!): CV
+  deleteCV(id: Int!): Boolean!
+}
+
+
+
+type Query {
+    hello: String
+    getCvs: [CV]!
+    getCvById(id: Int): CV!
+    getSkills: [Skill]!
+}
+
+
+enum Role {
+  ADMIN
+  USER
+}
+
+type CV {
+  id: ID!
+  name: String!
+  age: String!
+  job: String!
+  skills: [Skill]!
+  user: User!
+}
+
+type Skill {
+  id: ID!
+  designation: String!
+  cvs: [CV]!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  role: Role!
+  cvs: [CV]!
+}
+
+
+
+input CreateCVInput {
+  name: String!
+  age: String!
+  job: String!
+  skillIds: [Int]!
+  userId: Int!
+}
+
+input UpdateCVInput {
+  id: Int!
+  name: String
+  age: String
+  job: String
+  skillIds: [Int]
+  userId: Int
+}
+
+
+
+type cv{
+    user: User!
+    skills: [Skill]!
+}
+
+
+type Subscription {
+  CVUpdates: CV!
+}
