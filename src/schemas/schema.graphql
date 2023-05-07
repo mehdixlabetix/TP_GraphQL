@@ -1,10 +1,8 @@
 type Mutation {
-  createCV(input: CreateCVInput!): CV
-  updateCV(input: UpdateCVInput!): CV
-  deleteCV(id: Int!): Boolean!
+    createCV(input: CreateCVInput!): CV
+    updateCV(input: UpdateCVInput!): CV
+    deleteCV(id: Int!): Boolean!
 }
-
-
 
 type Query {
     hello: String
@@ -13,62 +11,62 @@ type Query {
     getSkills: [Skill]!
 }
 
-
 enum Role {
-  ADMIN
-  USER
+    ADMIN
+    USER
 }
 
 type CV {
-  id: ID!
-  name: String!
-  age: String!
-  job: String!
-  skills: [Skill]!
-  user: User!
+    id: ID!
+    name: String!
+    age: String!
+    job: String!
+    skills: [Skill]!
+    user: User!
 }
 
 type Skill {
-  id: ID!
-  designation: String!
-  cvs: [CV]!
+    id: ID!
+    designation: String!
+    cvs: [CV]!
 }
 
 type User {
-  id: ID!
-  name: String!
-  email: String!
-  role: Role!
-  cvs: [CV]!
+    id: ID!
+    name: String!
+    email: String!
+    role: Role!
+    cvs: [CV]!
 }
 
-
-
 input CreateCVInput {
-  name: String!
-  age: String!
-  job: String!
-  skillIds: [Int]!
-  userId: Int!
+    name: String!
+    age: String!
+    job: String!
+    skills: [Int]!
+    userId: Int!
 }
 
 input UpdateCVInput {
-  id: Int!
-  name: String
-  age: String
-  job: String
-  skillIds: [Int]
-  userId: Int
+    id: Int!
+    name: String
+    age: String
+    job: String
+    skillIds: [Int]
+    userId: Int
 }
-
-
 
 type cv{
     user: User!
     skills: [Skill]!
 }
 
+type DeleteCount {
+    count: String
+}
 
 type Subscription {
-  CVUpdates: CV!
+    CvCreated: CV!
+    CvUpdated: CV!
+    CvDeleted: DeleteCount!
 }
