@@ -6,7 +6,7 @@ import { CV } from '../interfaces';
 export type PubSubChannels = {
 	CvCreated: [{ CvCreated: CV }];
 	CvUpdated: [{ CvUpdated: CV }];
-	CvDeleted: [{ count: number }];
+	CvDeleted: [{ CvDeleted: CV }];
 };
 
 export const pubSub = createPubSub<PubSubChannels>();

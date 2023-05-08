@@ -1,7 +1,7 @@
 type Mutation {
     createCV(input: CreateCVInput!): CV
     updateCV(input: UpdateCVInput!): CV
-    deleteCV(id: Int!): Boolean!
+    deleteCV(id: Int!): CV
 }
 
 type Query {
@@ -52,7 +52,7 @@ input UpdateCVInput {
     name: String
     age: String
     job: String
-    skillIds: [Int]
+    skills: [Int]
     userId: Int
 }
 
@@ -68,5 +68,5 @@ type DeleteCount {
 type Subscription {
     CvCreated: CV!
     CvUpdated: CV!
-    CvDeleted: DeleteCount!
+    CvDeleted: CV!
 }

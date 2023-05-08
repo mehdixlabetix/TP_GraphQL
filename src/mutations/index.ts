@@ -1,7 +1,7 @@
 import { GraphQLError } from 'graphql';
 import { ContextType } from '../context';
 import { cvs, skills as skillz, users } from '../db';
-import { CV } from '../interfaces';
+import { CV} from '../interfaces';
 
 export const Mutation = {
 	createCV: (
@@ -103,7 +103,6 @@ export const Mutation = {
 		if (index === -1) {
 			throw new GraphQLError(`CV with ID ${id} not found`);
 		}
-
 		const deletedCV = cvs.splice(index, 1)[0];
 		const userIndex = users.findIndex((user) => user.id === deletedCV.userId);
 		if (userIndex !== -1) {
@@ -112,8 +111,8 @@ export const Mutation = {
 			);
 		}
 
-		pubSub.publish('CvDeleted', { count: 1 });
+		pubSub.publish('CvDeleted', {CvDeleted:deletedCV});
 
-		return { count: 1 };
+		return deletedCV ;
 	},
 };
